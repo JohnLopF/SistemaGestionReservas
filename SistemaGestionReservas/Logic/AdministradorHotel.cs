@@ -11,8 +11,20 @@ namespace SistemaGestionReservas.Logic
 
         private List<Reserva> reservas = new List<Reserva>();
 
+        public void RegistrarReserva(Reserva nueva)
+        {
+            //Validar datos básicos
+            nueva.Validar();
 
-        
+            //Validar disponibilidad
+            if (ExisteConflicto(nueva.NumeroHabitacion, nueva.FechaReserva, nueva.DuracionEstadia))
+            {
+                throw new Exception($"Conflicto: La habitación {nueva.NumeroHabitacion} ya está ocupada en esas fechas.");
+            }
+
+            reservas.Add(nueva);
+        }
+
 
         private bool ExisteConflicto(int habitacion, DateTime inicio, int noches)
         {
