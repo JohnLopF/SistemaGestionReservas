@@ -55,6 +55,7 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\HabitacionEstandar.cs" />
+    <Compile Include="Models\HabitacionVIP.cs" />
     <Compile Include="Models\Reserva.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
