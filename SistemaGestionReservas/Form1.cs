@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SistemaGestionReservas.Logic;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +13,7 @@ namespace SistemaGestionReservas
 {
     public partial class Form1 : Form
     {
+        private AdministradorHotel admin = new AdministradorHotel();
         public Form1()
         {
             InitializeComponent();
