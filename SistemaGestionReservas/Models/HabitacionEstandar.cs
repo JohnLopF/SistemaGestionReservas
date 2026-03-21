@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace SistemaGestionReservas.Logic
 {
-    internal class HabitacionEstandar
+    public class HabitacionEstandar : Reserva
     {
+        public override double CalcularCostoTotal()
+        {
+            return DuracionEstadia * TarifaNoche;
+        }
+
     }
 }
