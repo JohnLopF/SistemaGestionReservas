@@ -46,11 +46,36 @@ namespace SistemaGestionReservas.Logic
         }
         public List<Reserva> FiltrarPorTipo(string tipo)
         {
-            // Filtra según el nombre de la clase (HabitacionVIP o HabitacionEstandar)
+            //Filtra según el nombre de la clase (HabitacionVIP o HabitacionEstandar)
             return reservas
                 .Where(r => r.GetType().Name.Contains(tipo))
                 .ToList();
         }
+        public void EditarReserva(string documentoOriginal, Reserva reservaEditada)
+        {
+            //Buscar si existe
+            var existente = reservas.FirstOrDefault(r => r.DocumentoCliente == documentoOriginal);
+
+            if (existente == null)
+                throw new Exception("No se encontró la reserva para editar (Regla 6).");
+
+            //Validar que el cambio de fecha/habitación no choque con otras excluyendo la actual
+            bool choque = reservas.Any(r =>
+                r != existente && //No compararse con ella misma
+                r.NumeroHabitacion == reservaEditada.NumeroHabitacion &&
+                reservaEditada.FechaReserva.Date < r.FechaReserva.Date.AddDays(r.DuracionEstadia) &&
+                reservaEditada.FechaReserva.Date.AddDays(reservaEditada.DuracionEstadia) > r.FechaReserva.Date);
+
+            if (choque)
+                throw new Exception("Los nuevos cambios generan un conflicto de fechas con otra reserva.");
+
+            //aplicar los cambios
+            int index = reservas.IndexOf(existente);
+            reservaEditada.Validar();
+            reservas[index] = reservaEditada;
+        }
+
+
 
 
 
