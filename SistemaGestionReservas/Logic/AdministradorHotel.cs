@@ -74,9 +74,16 @@ namespace SistemaGestionReservas.Logic
             reservaEditada.Validar();
             reservas[index] = reservaEditada;
         }
+        //Eliminar reservas
+        public void EliminarReserva(string documento)
+        {
+            var r = reservas.FirstOrDefault(x => x.DocumentoCliente == documento);
 
+            if (r == null)
+                throw new Exception("La reserva no existe.");
 
-
+            reservas.Remove(r);
+        }
 
 
     }
