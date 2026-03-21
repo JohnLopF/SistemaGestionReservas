@@ -9,26 +9,21 @@ namespace SistemaGestionReservas.Logic
     public class AdministradorHotel
     {
 
-        private List<Reserva> reservas;
+        private List<Reserva> reservas = new List<Reserva>();
 
-        public void AgregarReserva(Reserva nueva)
+
+        
+
+        private bool ExisteConflicto(int habitacion, DateTime inicio, int noches)
         {
-            DateTime inicioNueva = nueva.FechaReserva.Date;
-            DateTime finNueva = inicioNueva.AddDays(nueva.DuracionEstadia);
+            DateTime finNueva = inicio.Date.AddDays(noches);
 
-            bool ocupada = reservas.Any(r =>
-                r.NumeroHabitacion == nueva.NumeroHabitacion &&
-                inicioNueva < r.FechaReserva.AddDays(r.DuracionEstadia).Date &&
+            return reservas.Any(r =>
+                r.NumeroHabitacion == habitacion &&
+                inicio.Date < r.FechaReserva.Date.AddDays(r.DuracionEstadia) &&
                 finNueva > r.FechaReserva.Date
             );
-
-            if (ocupada)
-            {
-                throw new Exception($"La habitación {nueva.NumeroHabitacion} ya está ocupada " + $"entre las fechas seleccionadas.");
-            }
-
         }
-
 
 
 
