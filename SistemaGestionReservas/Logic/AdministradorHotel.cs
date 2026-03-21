@@ -38,7 +38,19 @@ namespace SistemaGestionReservas.Logic
         {
             return reservas;
         }
-
+        public List<Reserva> BuscarPorNombre(string nombre)
+        {
+            return reservas
+                .Where(r => r.NombreCliente.ToLower().Contains(nombre.ToLower()))
+                .ToList();
+        }
+        public List<Reserva> FiltrarPorTipo(string tipo)
+        {
+            // Filtra según el nombre de la clase (HabitacionVIP o HabitacionEstandar)
+            return reservas
+                .Where(r => r.GetType().Name.Contains(tipo))
+                .ToList();
+        }
 
 
 
