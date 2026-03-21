@@ -17,6 +17,7 @@ namespace SistemaGestionReservas
         public Form1()
         {
             InitializeComponent();
+            cmbTipo.SelectedIndex = 0;
         }
     }
 }
