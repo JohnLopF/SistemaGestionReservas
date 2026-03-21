@@ -24,8 +24,6 @@ namespace SistemaGestionReservas.Logic
 
             reservas.Add(nueva);
         }
-
-
         private bool ExisteConflicto(int habitacion, DateTime inicio, int noches)
         {
             DateTime finNueva = inicio.Date.AddDays(noches);
@@ -35,6 +33,10 @@ namespace SistemaGestionReservas.Logic
                 inicio.Date < r.FechaReserva.Date.AddDays(r.DuracionEstadia) &&
                 finNueva > r.FechaReserva.Date
             );
+        }
+        public List<Reserva> ObtenerTodas()
+        {
+            return reservas;
         }
 
 
