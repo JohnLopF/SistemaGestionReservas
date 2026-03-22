@@ -40,14 +40,18 @@ namespace SistemaGestionReservas
         {
             try
             {
-                //Determinar tipo de habitación
+                //Validar selección de tipo
+                if (cmbTipo.SelectedItem == null)
+                    throw new Exception("Debe seleccionar un tipo de habitación.");
+
+                //Determinar tipo de instancia
                 Reserva nueva;
                 if (cmbTipo.SelectedItem.ToString() == "VIP")
                     nueva = new HabitacionVIP();
                 else
                     nueva = new HabitacionEstandar();
 
-                //Obtener datos de la interfaz
+                //Mapear datos desde la interfaz
                 nueva.NombreCliente = txtNombre.Text.Trim();
                 nueva.DocumentoCliente = txtDocumento.Text.Trim();
 
@@ -62,14 +66,28 @@ namespace SistemaGestionReservas
                 nueva.DuracionEstadia = (int)numNoches.Value;
                 nueva.FechaReserva = dtpFecha.Value;
 
-                //Registrar mediante lógica
-                admin.RegistrarReserva(nueva);
-                
-                MessageBox.Show("Reserva guardada con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //Decidir si es Registro Nuevo o Edición
+                if (string.IsNullOrEmpty(documentoEdicion))
+                {
+                    admin.RegistrarReserva(nueva);
+                    MessageBox.Show("Reserva guardada con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    admin.EditarReserva(documentoEdicion, nueva);
+                    MessageBox.Show("Reserva actualizada con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    //Resetear estado de edición
+                    documentoEdicion = "";
+                    btnGuardar.Text = "Registrar Reserva";                    
+                }
+
+                ActualizarPantalla();
+                LimpiarCampos();
             }
             catch (Exception ex)
             {
-                //Manejo de excepciones
+                //Manejo de excepciones (Objetivo 5 de la práctica)
                 MessageBox.Show("Error: " + ex.Message, "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
