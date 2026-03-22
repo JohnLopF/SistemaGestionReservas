@@ -156,5 +156,12 @@ namespace SistemaGestionReservas
                 
             }
         }
+
+        private void txtBuscar_TextChanged(object sender, EventArgs e)
+        {
+            dgvReservas.DataSource = null;
+            dgvReservas.DataSource = admin.BuscarPorNombre(txtBuscar.Text);
+            FormatearColumnas();
+        }
     }
 }
