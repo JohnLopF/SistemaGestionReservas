@@ -35,7 +35,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.numNoches = new System.Windows.Forms.NumericUpDown();
             this.txtTarifa = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.dtpFecha = new System.Windows.Forms.DateTimePicker();
@@ -47,7 +47,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.cmbTipo = new System.Windows.Forms.ComboBox();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numNoches)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -115,13 +115,13 @@
             this.label4.TabIndex = 6;
             this.label4.Text = "Cantidad de noches";
             // 
-            // numericUpDown1
+            // numNoches
             // 
-            this.numericUpDown1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numericUpDown1.Location = new System.Drawing.Point(270, 194);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(148, 27);
-            this.numericUpDown1.TabIndex = 7;
+            this.numNoches.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numNoches.Location = new System.Drawing.Point(270, 194);
+            this.numNoches.Name = "numNoches";
+            this.numNoches.Size = new System.Drawing.Size(148, 27);
+            this.numNoches.TabIndex = 7;
             // 
             // txtTarifa
             // 
@@ -168,6 +168,7 @@
             this.btnGuardar.TabIndex = 12;
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // btnEliminar
             // 
@@ -243,7 +244,7 @@
             this.Controls.Add(this.dtpFecha);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtTarifa);
-            this.Controls.Add(this.numericUpDown1);
+            this.Controls.Add(this.numNoches);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -253,7 +254,7 @@
             this.Controls.Add(this.txtNombre);
             this.Name = "Form1";
             this.Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numNoches)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -269,7 +270,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.NumericUpDown numNoches;
         private System.Windows.Forms.TextBox txtTarifa;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.DateTimePicker dtpFecha;

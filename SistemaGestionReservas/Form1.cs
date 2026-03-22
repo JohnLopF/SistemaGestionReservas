@@ -17,7 +17,46 @@ namespace SistemaGestionReservas
         public Form1()
         {
             InitializeComponent();
-            cmbTipo.SelectedIndex = 0;
+            cmbTipo.SelectedIndex = -1;
+            cmbTipo.Items.AddRange(new string[] { "VIP", "Estandar" });
+        }
+
+        private void btnGuardar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //Determinar tipo de habitación
+                Reserva nueva;
+                if (cmbTipo.SelectedItem.ToString() == "VIP")
+                    nueva = new HabitacionVIP();
+                else
+                    nueva = new HabitacionEstandar();
+
+                //Obtener datos de la interfaz
+                nueva.NombreCliente = txtNombre.Text.Trim();
+                nueva.DocumentoCliente = txtDocumento.Text.Trim();
+
+                if (!int.TryParse(txtHabitacion.Text, out int nHab))
+                    throw new Exception("El número de habitación debe ser numérico.");
+                nueva.NumeroHabitacion = nHab;
+
+                if (!double.TryParse(txtTarifa.Text, out double tarifa))
+                    throw new Exception("La tarifa debe ser un valor numérico.");
+                nueva.TarifaNoche = tarifa;
+
+                nueva.DuracionEstadia = (int)numNoches.Value;
+                nueva.FechaReserva = dtpFecha.Value;
+
+                //Registrar mediante lógica
+                admin.RegistrarReserva(nueva);
+                
+                MessageBox.Show("Reserva guardada con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                //Manejo de excepciones
+                MessageBox.Show("Error: " + ex.Message, "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
     }
 }
