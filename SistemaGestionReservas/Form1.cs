@@ -155,6 +155,12 @@ namespace SistemaGestionReservas
                 dgvReservas.Columns["TarifaNoche"].DefaultCellStyle.Format = "C0";
                 dgvReservas.Columns["CostoTotal"].HeaderText = "Costo Final";
                 dgvReservas.Columns["CostoTotal"].DefaultCellStyle.Format = "C0";
+
+                if (dgvReservas.Columns.Contains("TipoHabitacion"))
+                {
+                    dgvReservas.Columns["TipoHabitacion"].HeaderText = "Categoría";                    
+                    dgvReservas.Columns["TipoHabitacion"].DisplayIndex = 2;
+                }
             }
         }
         private void LimpiarCampos()

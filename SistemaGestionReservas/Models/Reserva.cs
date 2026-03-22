@@ -16,6 +16,7 @@ namespace SistemaGestionReservas.Logic
         public int DuracionEstadia { get; set; }
         public double TarifaNoche { get; set; }
         public double CostoTotal => CalcularCostoTotal();
+        public string TipoHabitacion => this is HabitacionVIP ? "VIP" : "Estándar";
         public abstract double CalcularCostoTotal();
 
         public virtual string MostrarInfo()
