@@ -26,7 +26,7 @@ namespace SistemaGestionReservas
             //Configuración inicial de controles
             cmbTipo.Items.Clear();
             cmbTipo.Items.AddRange(new string[] { "VIP", "Estandar" });
-            cmbTipo.SelectedIndex = 0;
+            cmbTipo.SelectedIndex = -1;
             dtpFecha.Value = DateTime.Now;
 
             //Estética del DataGridView
