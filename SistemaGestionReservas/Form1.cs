@@ -77,5 +77,25 @@ namespace SistemaGestionReservas
         {
             
         }
+        
+
+        private void FormatearColumnas()
+        {
+            if (dgvReservas.Columns.Count > 0)
+            {
+                dgvReservas.Columns["NombreCliente"].HeaderText = "Cliente";
+                dgvReservas.Columns["DocumentoCliente"].HeaderText = "Identificación";
+                dgvReservas.Columns["NumeroHabitacion"].HeaderText = "Habitacion";
+                dgvReservas.Columns["FechaReserva"].HeaderText = "Entrada";
+                dgvReservas.Columns["DuracionEstadia"].HeaderText = "Noches";
+                dgvReservas.Columns["TarifaNoche"].HeaderText = "Tarifa p/n";
+                dgvReservas.Columns["CostoTotal"].HeaderText = "Costo Total";
+
+                //Formato de Moneda
+                dgvReservas.Columns["TarifaNoche"].DefaultCellStyle.Format = "C0";
+                dgvReservas.Columns["CostoTotal"].DefaultCellStyle.Format = "C0";
+            }
+        }
+
     }
 }
