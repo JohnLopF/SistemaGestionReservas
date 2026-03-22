@@ -135,5 +135,26 @@ namespace SistemaGestionReservas
             txtDocumento.Enabled = true;
         }
 
+        private void dgvReservas_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                //Obtenemos la reserva seleccionada directamente
+                var reservaSel = (Reserva)dgvReservas.Rows[e.RowIndex].DataBoundItem;
+
+                //Cargar los datos en los controles
+                txtNombre.Text = reservaSel.NombreCliente;
+                txtDocumento.Text = reservaSel.DocumentoCliente;
+                txtHabitacion.Text = reservaSel.NumeroHabitacion.ToString();
+                numNoches.Value = reservaSel.DuracionEstadia;
+                txtTarifa.Text = reservaSel.TarifaNoche.ToString();
+                dtpFecha.Value = reservaSel.FechaReserva;
+                cmbTipo.SelectedItem = reservaSel is HabitacionVIP ? "VIP" : "Estandar";
+                
+                documentoEdicion = reservaSel.DocumentoCliente;
+                btnGuardar.Text = "Actualizar Cambios";
+                
+            }
+        }
     }
 }
