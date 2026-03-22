@@ -118,6 +118,7 @@ namespace SistemaGestionReservas
 
                 //Formato de Moneda
                 dgvReservas.Columns["TarifaNoche"].DefaultCellStyle.Format = "C0";
+                dgvReservas.Columns["CostoTotal"].HeaderText = "Costo Final";
                 dgvReservas.Columns["CostoTotal"].DefaultCellStyle.Format = "C0";
             }
         }

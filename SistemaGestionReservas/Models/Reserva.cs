@@ -15,7 +15,7 @@ namespace SistemaGestionReservas.Logic
         public DateTime FechaReserva { get; set; }
         public int DuracionEstadia { get; set; }
         public double TarifaNoche { get; set; }
-
+        public double CostoTotal => CalcularCostoTotal();
         public abstract double CalcularCostoTotal();
 
         public virtual string MostrarInfo()

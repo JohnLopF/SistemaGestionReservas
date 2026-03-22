@@ -57,7 +57,7 @@ namespace SistemaGestionReservas.Logic
             var existente = reservas.FirstOrDefault(r => r.DocumentoCliente == documentoOriginal);
 
             if (existente == null)
-                throw new Exception("No se encontró la reserva para editar (Regla 6).");
+                throw new Exception("No se encontró la reserva para editar.");
 
             //Validar que el cambio de fecha/habitación no choque con otras excluyendo la actual
             bool choque = reservas.Any(r =>
