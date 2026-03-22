@@ -102,7 +102,20 @@ namespace SistemaGestionReservas
                 dgvReservas.Columns["TarifaNoche"].DefaultCellStyle.Format = "C0";
                 dgvReservas.Columns["CostoTotal"].DefaultCellStyle.Format = "C0";
             }
-        }        
+        }
+        private void LimpiarCampos()
+        {
+            txtNombre.Clear();
+            txtDocumento.Clear();
+            txtHabitacion.Clear();
+            txtTarifa.Clear();
+            numNoches.Value = 1;
+            dtpFecha.Value = DateTime.Now;
+            cmbTipo.SelectedIndex = 0;
+            documentoEdicion = "";
+            btnGuardar.Text = "Registrar Reserva";
+            txtDocumento.Enabled = true;
+        }
 
     }
 }
