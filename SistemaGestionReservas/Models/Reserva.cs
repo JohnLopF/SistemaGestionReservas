@@ -25,14 +25,21 @@ namespace SistemaGestionReservas.Logic
 
         public virtual void Validar()
         {
-            if (string.IsNullOrEmpty(NombreCliente) || NumeroHabitacion <= 0)
+
+            if (string.IsNullOrEmpty(NombreCliente))
                 throw new Exception("El nombre y el número de habitación son obligatorios.");
 
+            if(NumeroHabitacion <= 0)
+                throw new Exception("El número de habitación debe ser mayor a cero.");
+
+            if (string.IsNullOrEmpty(DocumentoCliente))
+                throw new Exception("El documento es obligatorio.");            
+
             if (DuracionEstadia <= 1)
-                throw new Exception("La reserva debe ser mayor a 1 noche (Regla 2).");
+                throw new Exception("La reserva debe ser mayor a 1 noche.");
 
             if (TarifaNoche <= 0)
-                throw new Exception("La tarifa debe ser mayor a cero (Regla 3).");
+                throw new Exception("La tarifa debe ser mayor a cero.");
         }
 
     }
