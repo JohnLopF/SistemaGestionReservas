@@ -14,6 +14,7 @@ namespace SistemaGestionReservas
     public partial class Form1 : Form
     {
         private AdministradorHotel admin = new AdministradorHotel();
+        private string documentoEdicion = "";
         public Form1()
         {
             InitializeComponent();
