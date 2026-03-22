@@ -87,14 +87,49 @@ namespace SistemaGestionReservas
             }
             catch (Exception ex)
             {
-                //Manejo de excepciones (Objetivo 5 de la práctica)
+                //Manejo de excepciones
                 MessageBox.Show("Error: " + ex.Message, "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            
+            try
+            {
+                //Verificar si hay una fila seleccionada
+                if (dgvReservas.SelectedRows.Count > 0)
+                {
+                    //Obtener el valor de la celda                
+                    string documento = dgvReservas.SelectedRows[0].Cells["DocumentoCliente"].Value.ToString();
+
+                    //Pedir confirmación
+                    DialogResult resultado = MessageBox.Show(
+                        $"¿Está seguro de que desea eliminar la reserva con documento {documento}?",
+                        "Confirmar Eliminación",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question);
+
+                    if (resultado == DialogResult.Yes)
+                    {                        
+                        admin.EliminarReserva(documento);
+                        //Refrescar la interfaz
+                        ActualizarPantalla();
+                        LimpiarCampos();
+
+                        MessageBox.Show("Reserva eliminada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                else
+                {
+                    //Si no hay nada seleccionado
+                    MessageBox.Show("Por favor, seleccione una reserva de la lista para eliminar.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                //Manejo de errores por si el documento no existe en la lista
+                MessageBox.Show("Error al eliminar: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void ActualizarPantalla()
