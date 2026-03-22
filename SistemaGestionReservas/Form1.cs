@@ -17,8 +17,22 @@ namespace SistemaGestionReservas
         public Form1()
         {
             InitializeComponent();
-            cmbTipo.SelectedIndex = -1;
+            ConfigurarFormulario();
+        }
+
+        private void ConfigurarFormulario()
+        {
+            //Configuración inicial de controles
+            cmbTipo.Items.Clear();
             cmbTipo.Items.AddRange(new string[] { "VIP", "Estandar" });
+            cmbTipo.SelectedIndex = 0;
+            dtpFecha.Value = DateTime.Now;
+
+            //Estética del DataGridView
+            dgvReservas.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvReservas.MultiSelect = false;
+            dgvReservas.ReadOnly = true;
+            dgvReservas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
@@ -57,6 +71,11 @@ namespace SistemaGestionReservas
                 //Manejo de excepciones
                 MessageBox.Show("Error: " + ex.Message, "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }
