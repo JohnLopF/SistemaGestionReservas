@@ -77,7 +77,13 @@ namespace SistemaGestionReservas
         {
             
         }
-        
+
+        private void ActualizarPantalla()
+        {
+            dgvReservas.DataSource = null;
+            dgvReservas.DataSource = admin.ObtenerTodas();
+            FormatearColumnas();
+        }
 
         private void FormatearColumnas()
         {
@@ -95,7 +101,7 @@ namespace SistemaGestionReservas
                 dgvReservas.Columns["TarifaNoche"].DefaultCellStyle.Format = "C0";
                 dgvReservas.Columns["CostoTotal"].DefaultCellStyle.Format = "C0";
             }
-        }
+        }        
 
     }
 }
